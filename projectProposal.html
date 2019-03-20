@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Proposal</title>
+</head>
+<body>
+
+<ol>
+   <h2><li>
+        Basic Info
+   </li></h2>
+    <ol>
+        <li>Music Industry Analytics</li>
+        <li>Nikash Taskar and Ian Katzman</li>
+        <li>nikashtaskar@wustl.edu and ikatzman@wustl.edu</li>
+        <li>https://github.com/niktaskar/tour_analytics</li>
+    </ol>
+    <h2><li>
+        Background and Motivation
+    </li></h2>
+    <ol>
+        <li>
+            We are both music fans, and this is a topic that is very interesting to both of us. We’ve often wondered why our favorite artists never come to St. Louis, and we hope to gain some insight as to why, whether St. Louis doesn’t have the right demographic, doesn’t have the right venues, or just isn’t a common place to tour. Looking into some analytics that people in the music industry look into will also hopefully be eye-opening. Over the course of the project, we hope to gain insight as to how artists and management groups determine where and when to perform in order to gain the most attention.
+        </li>
+    </ol>
+    <h2><li>
+        Project Objectives
+    </li></h2>
+    <ol>
+        <li>
+            Our primary objective with this project is to determine the best stops for a number of artists to have shows at on tour based on data. Using a variety of data we will hopefully be able to find trends that link some areas with more success than others when it comes to an artist’s specific genre or name. We would also like to determine where the artist’s most successful venues or performances were.
+        </li>
+        <li>
+            This would hopefully allow for artists to make more informed decisions when they are planning their tour in order to make the most money they can, reach the most fans, and more importantly feel fulfilled during their performances.
+        </li>
+    </ol>
+    <h2><li>
+        Data
+    </li></h2>
+    <ol>
+        <li>
+            We will try to get our data from websites that have information about ticket sales and tours. We will do some web scraping and data parsing.
+        </li>
+        <ol>
+            <li>
+                <a>https://www.setlist.fm/</a>
+            </li>
+            <li>
+                <a>https://www.pollstar.com/</a>
+            </li>
+            <li>
+                <a>https://www.songkick.com</a>
+            </li>
+            <li>Some tours were so popular that they have their own Wikipedia pages with some information that can be useful
+                As we work on the project we will hopefully find more sources</li>
+        </ol>
+        <li>
+            Possible Data
+        </li>
+        <ol>
+            <li>Ticket prices at certain locations</li>
+            <li>Average ticket price for artist</li>
+            <li>Average attendance for artist</li>
+            <li>Attendance at certain venues</li>
+            <li>Dates of concerts</li>
+            <li>Number of shows at location</li>
+            <li>Number of shows per year</li>
+        </ol>
+    </ol>
+    <h2><li>
+        Data Processing
+    </li></h2>
+    <ol>
+        <li>We will most likely need to clean up our data since a lot of it will be coming from sources where the data isn't immediately available in easily manipulated formats</li>
+        <li>We hope to get data for a few artists, right now we are thinking anywhere between 5 and 10</li>
+        <li>Data processing will be done mostly in Python, to scrape, analyze and transform the data into easily digestible data. The rest will be done in JavaScript to filter, sort, and map the data to svg elements to create the final visualizations</li>
+    </ol>
+    <h2><li>
+        Visualization Design
+    </li></h2>
+    <ol>
+        <li>Full Map:
+            <br/>
+            <img src="images/full_map.png"/>
+        </li>
+        <li>
+            Bar Chart:
+            <br/>
+            <img src="images/bar_chart.png"/>
+        </li>
+        <li>
+            Tooltip:
+            <br/>
+            <img src="images/tooltip.png"/>
+        </li>
+        <li>
+            Force or Directed Graph:
+            <br/>
+            <img src="images/force_or_directed_graph.png"/>
+        </li>
+    </ol>
+    <h2><li>
+        Must Have Features
+    </li></h2>
+    <ol>
+        <li>Map of US that will be used to display information</li>
+        <li>Tooltip on hover over individual states showing information about the state</li>
+        <li>Color coding different elements of the visualization in order to convey specific information</li>
+        <li>Bar chart onclick for each state will show specific information about the state and venues in that state, and will, more importantly, update other visualizations</li>
+    </ol>
+    <h2><li>
+        Optional Features
+    </li></h2>
+    <ol>
+        <li>Brushing to isolate specific venues and/or states in order to display information specific to those elements</li>
+        <li>Force maps to create links between venues and artists, stats and artists, etc.</li>
+    </ol>
+    <h2><li>
+        Project Schedule
+    </li></h2>
+    <ol>
+        <li>March 17-23: Project Proposal, Target, and Start Data Wrangling</li>
+        <li>March 24-30: Finish Data Wrangling and Design</li>
+        <li>March 31-April 6: Start Implementation</li>
+        <li>April 7-13: Keep working on Implementation</li>
+        <li>April 14-20: Finish Implementation</li>
+        <li>April 21-27: Evaluate and fix bugs</li>
+    </ol>
+</ol>
+</body>
+</html>

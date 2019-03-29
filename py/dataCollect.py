@@ -14,10 +14,12 @@ def quitPage():
 
 def createCSV(tour):
     filename = "../data/"+str(tour) + ".csv"
-
     ofile = open(filename, 'w')
 
-    driver.find_element_by_css_selector("body")
+    tableItems = driver.find_elements_by_class_name("wikitable")
+
+    for item in tableItems:
+        print(item.text)
 
     ofile.close()
 

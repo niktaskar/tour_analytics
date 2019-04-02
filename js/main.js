@@ -2,6 +2,7 @@ var height = 600;
 var width = 1000;
 
 var svg = d3.select("#chart-area").append("svg")
+    .attr("id", "map-svg")
     .attr("height", height)
     .attr("width", width);
 

@@ -2,7 +2,7 @@ body {
     background-color: rgba(0,127,255, 0.5);
 }
 
-.selector-select {
+#selector-select {
     text-align: center;
     margin-left: 50%;
 }

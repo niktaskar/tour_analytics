@@ -29,6 +29,7 @@ d3.json("data/us-10m.json" ,function(error, data) {
         .append("path")
         .attr("d", path)
         .attr("class", "map")
-        .attr("border", "black");
+        .attr("stroke", "black")
+        .attr("fill", "lightgray");
 
 });

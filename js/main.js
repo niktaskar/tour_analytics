@@ -39,6 +39,10 @@ function createVisualization(error, tourData, mapData) {
             .attr("stroke", "black")
             .attr("fill", "lightgray");
 
+        svg.append("path")
+           .attr("class", "state-borders")
+           // .attr("d", path(topojson.mesh(mapData, mapData.objects.states, function(a, b) { return a !== b; })));
+
 }
 
 function handleChange(event){

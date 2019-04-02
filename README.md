@@ -1,5 +1,6 @@
 # tour_analytics
 Data Visualization Final Project: using data from various artists' tours, the aim is to display which venues/states garner the highest audiences for each artist, and to uncover underlying factors of audience turnout.
+Please inspect the web page when changing the select option.
 
 #### Milestone 1:
 * Created a webcrawler (dataCollect.py) to parse the Wikipedia pages of 5 major tours

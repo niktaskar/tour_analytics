@@ -20,7 +20,7 @@ def createCSV(tour):
     tableItems = driver.find_elements_by_tag_name("tr")
 
     # ofile.write("City,Date,Country,Venue,Attendance,Revenue")
-    ofile.write("City,Date,Country,Attendance,Revenue\n")
+    ofile.write("City,State,Date,Country,Attendance,Revenue\n")
 
     months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -30,7 +30,10 @@ def createCSV(tour):
             splitLine = line.split(" ")
             if month in line and 'N/A' not in line and len(splitLine) > 4:
                 # splitLine = line.split(" ")
-                dataLine = str(splitLine[3])+","+str(splitLine[0])+str(splitLine[1])+str(splitLine[2])+",United States,"+str(splitLine[len(splitLine)-4]).replace(",","")+","+str(splitLine[len(splitLine)-1]).replace(",","").replace("$","")+"\n"
+                # print(splitLine[1])
+
+                #CITY,STATE,DATE,COUNTRY,VENUE,ATTENDANCE,REVENUE
+                dataLine = str(splitLine[3])+","+"STATE"+","+str(splitLine[0]+"-")+str(splitLine[1]+"-").replace(",","")+str(splitLine[2])+",United States,"+str(splitLine[len(splitLine)-4]).replace(",","")+","+str(splitLine[len(splitLine)-1]).replace(",","").replace("$","")+"\n"
                 ofile.write(dataLine)
                 print(dataLine)
 

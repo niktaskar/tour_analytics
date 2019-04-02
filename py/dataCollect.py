@@ -13,17 +13,17 @@ def quitPage():
     driver.quit()
 
 def createCSV(tour):
-    filename = "../data/"+str(tour) + ".csv"
+    filename = "../data/"+str(tour) + ".json"
     ofile = open(filename, 'w')
 
     # tableItems = driver.find_elements_by_class_name("wikitable")
     tableItems = driver.find_elements_by_tag_name("tr")
 
     # ofile.write("City,Date,Country,Venue,Attendance,Revenue")
-    ofile.write("City,State,Date,Country,Attendance,Revenue\n")
+    # ofile.write("City,State,Date,Country,Attendance,Revenue\n")
 
     months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
+    ofile.write("{'Concerts':[")
     for item in tableItems:
         line = item.text
         for month in months:
@@ -33,7 +33,7 @@ def createCSV(tour):
                 # print(splitLine[1])
 
                 #CITY,STATE,DATE,COUNTRY,VENUE,ATTENDANCE,REVENUE
-                dataLine = str(splitLine[3])+","+"STATE"+","+str(splitLine[0]+"-")+str(splitLine[1]+"-").replace(",","")+str(splitLine[2])+",United States,"+str(splitLine[len(splitLine)-4]).replace(",","")+","+str(splitLine[len(splitLine)-1]).replace(",","").replace("$","")+"\n"
+                dataLine = "{'City': '"+str(splitLine[3])+"',"+"'State': 'STATE'"+", 'Date': '"+str(splitLine[0]+"-")+str(splitLine[1]+"-").replace(",","")+str(splitLine[2])+"', 'Country': 'United States', 'Attendance': '"+str(splitLine[len(splitLine)-4]).replace(",","")+"', 'Revenue': '"+str(splitLine[len(splitLine)-1]).replace(",","").replace("$","")+"'},\n"
                 ofile.write(dataLine)
                 print(dataLine)
 
@@ -47,7 +47,7 @@ def createCSV(tour):
 
         # ofile.write(item.text)
         # print(item.text)
-
+    ofile.write("]}")
     ofile.close()
 
 for tourName in tours:

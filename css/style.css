@@ -1,12 +1,5 @@
 body {
     background-color: rgba(0,127,255, 0.5);
-}
-
-#selector-select {
     text-align: center;
-    margin-left: 50%;
-}
-
-#map-svg {
-    margin-left: 15%;
+    font-family: monospace;
 }

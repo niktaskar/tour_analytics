@@ -1,5 +1,15 @@
 body {
-    background-color: rgba(0,127,255, 0.5);
+    background-color: white;
     text-align: center;
     font-family: monospace;
+}
+
+.state-text {
+    position: relative;
+    font-size: 16px;
+}
+
+#text-area {
+    position: relative;
+    top: 30px;
 }

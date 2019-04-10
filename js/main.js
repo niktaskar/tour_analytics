@@ -4,10 +4,15 @@ var artists = ["weeknd", 'beyonce', "lamar", "bieber", "drake"];
 var tours = ["Starboy:_Legend_of_the_Fall_Tour", "The_Formation_World_Tour", "The_Damn_Tour", "Purpose_World_Tour", "Summer_Sixteen_Tour"];
 var defaultTour = tours[0];
 
+var barChartArea = d3.select("#barchart-area").append("svg")
+    .attr("id", "bar-svg")
+    .attr("height", 600)
+    .attr("width", 600);
+
 var textArea = d3.select("#text-area").append("svg")
     .attr("id", "text-svg")
-    .attr("height", 20)
-    .attr("width", 200);
+    .attr("height", 30)
+    .attr("width", 400);
 
 var svg = d3.select("#chart-area").append("svg")
     .attr("id", "map-svg")
@@ -53,14 +58,19 @@ function createVisualization(error, tourData, mapData) {
             .on("mouseover", function(d) {
                 var stateName = d.properties.STATE_ABBR;
                 textArea.append("text")
-                    .text(stateName)
+                    .text("State: " + stateName)
                     .attr("x", 100)
                     .attr("y", 20)
                     .attr("class", "state-text");
             })
             .on("mouseout", function(d){
                 textArea.selectAll("text").remove();
-            })
+            });
+
+        barChartArea.selectAll("rect")
+            .data(tourData)
+            .enter()
+            .append("rect");
 
 
 }

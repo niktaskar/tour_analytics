@@ -13,3 +13,14 @@ body {
     position: relative;
     top: 30px;
 }
+
+.chart-div {
+    margin-bottom: 50px;
+}
+
+.tooltip {
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}

@@ -75,7 +75,7 @@ function createVisualization(error, tourData, mapData) {
                 var totalAttendance = 0;
 
                 for(var i = 0; i < tourData.Concerts.length; i++){
-                    if(tourData.Concerts[i].Abbr === d.properties.STATE_ABBR){
+                    if(tourData.Concerts[i].Abbr === d.properties.STATE_ABBR) {
                         totalRevenue += tourData.Concerts[i].Revenue;
                         totalAttendance += tourData.Concerts[i].Attendance;
                     }
@@ -85,7 +85,11 @@ function createVisualization(error, tourData, mapData) {
                     .attr("class", "tooltip")
                     .direction("e")
                     .html(function(){
-                        return "<p><h4>State: " + d.properties.STATE_ABBR + "</h4></p><p>Total Attendance: " + totalAttendance + "</p><p>Total Revenue: " + totalRevenue + "</p>"
+                        if(totalAttendance !== 0) {
+                            return "<p><h4>State: " + d.properties.STATE_ABBR + "</h4></p><p>Total Attendance: " + totalAttendance + "</p><p>Total Revenue: " + totalRevenue + "</p>";
+                        } else {
+                            return "<p><h4>State: " + d.properties.STATE_ABBR + "</h4></p><p>No Concerts</p>";
+                        }
                     });
 
                 svg.call(tip);
@@ -103,6 +107,8 @@ function createVisualization(error, tourData, mapData) {
 
 function renderBarCharts(data) {
         revBarChartArea.selectAll("rect").remove();
+        attBarChartArea.selectAll("rect").remove();
+
         // REVENUE SCALE
         var minRevenue = d3.min(data, function(d) {
             return d.Revenue;

@@ -151,7 +151,25 @@ function renderBarCharts(data) {
                 return revenueScale(d.Revenue);
             })
             .attr("fill", "lightgray")
-            .attr("transform", "translate(100, -100)");
+            .attr("transform", "translate(100, -100)")
+            .on("mouseover", function(d) {
+                var tip = d3.tip()
+                    .attr("class", "tooltip")
+                    .direction("e")
+                    .html(function(){
+                        return "<p><h4>City: " + d.City + "</h4><p>Venue: " + d.Venue + "</p></p>"+"</p><p>Revenue: " + d.Revenue + "</p>"
+                    });
+
+                svg.call(tip);
+
+                tip.show();
+
+                this.setAttribute("fill", "darkgray");
+            })
+            .on("mouseout", function(d){
+                d3.select(".tooltip").remove();
+                this.setAttribute("fill", "lightgray");
+            });
 
 
         data = sortData(data, "Attendance");
@@ -174,7 +192,25 @@ function renderBarCharts(data) {
                 return attendScale(d.Attendance);
             })
             .attr("fill", "lightgray")
-            .attr("transform", "translate(100, -100)");
+            .attr("transform", "translate(100, -100)")
+            .on("mouseover", function(d) {
+                var tip = d3.tip()
+                    .attr("class", "tooltip")
+                    .direction("e")
+                    .html(function(){
+                        return "<p><h4>City: " + d.City + "</h4><p>Venue: " + d.Venue + "</p></p>"+"</p><p>Attendance: " + d.Attendance + "</p>"
+                    });
+
+                svg.call(tip);
+
+                tip.show();
+
+                this.setAttribute("fill", "darkgray");
+            })
+            .on("mouseout", function(d){
+                d3.select(".tooltip").remove();
+                this.setAttribute("fill", "lightgray");
+            });
 
 }
 

@@ -4,7 +4,7 @@
 {"City": "Duluth","State": "Georgia", "Abbr": "GA", "Date": "July-17-2017", "Country": "United States", "Venue": "Infinite Energy Arena", "Attendance": "9846", "Revenue": "943090"},
 {"City": "Philadelphia","State": "Pennsylvania", "Abbr": "PA", "Date": "July-19-2017", "Country": "United States", "Venue": "Wells Fargo Center", "Attendance": "13513", "Revenue": "1330647"},
 {"City": "Brooklyn","State": "New York", "Abbr": "NY", "Date": "July-20-2017", "Country": "United States", "Venue": "Barclays Center", "Attendance": "28174", "Revenue": "3074047[b]"},
-{"City": "Washington","State": "D.C.", "Abbr": "DC", "Date": "July-21-2017", "Country": "United States", "Venue": "Verizon Center", "Attendance": "12944", "Revenue": "1375048"},
+{"City": "Washington D.C.","State": "Virginia", "Abbr": "VA", "Date": "July-21-2017", "Country": "United States", "Venue": "Verizon Center", "Attendance": "12944", "Revenue": "1375048"},
 {"City": "Boston","State": "Massachusetts", "Abbr": "MA", "Date": "July-22-2017", "Country": "United States", "Venue": "TD Garden", "Attendance": "12773", "Revenue": "1400540"},
 {"City": "Auburn Hills","State": "Michigan", "Abbr": "MI", "Date": "July-26-2017", "Country": "United States", "Venue": "The Palace of Auburn Hills", "Attendance": "13070", "Revenue": "1301448"},
 {"City": "Chicago","State": "Illinois", "Abbr": "IL", "Date": "July-27-2017", "Country": "United States", "Venue": "United Center", "Attendance": "24727", "Revenue": "2415331[d]"},

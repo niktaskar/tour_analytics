@@ -21,7 +21,7 @@
 {"City": "Auburn Hills","State": "Michigan", "Abbr": "MI", "Date": "April-25-2016", "Country": "United States", "Venue": "The Palace of Auburn Hills", "Attendance": "14795", "Revenue": "1538259"},
 {"City": "Cleveland","State": "Ohio", "Abbr": "OH", "Date": "April-26-2016", "Country": "United States", "Venue": "Quicken Loans Arena", "Attendance": "16028", "Revenue": "1480206"},
 {"City": "Columbus","State": "Ohio", "Abbr": "OH", "Date": "April-28-2016", "Country": "United States", "Venue": "Schottenstein Center", "Attendance": "13919", "Revenue": "1331983"},
-{"City": "Washington","State": "D.C.", "Abbr": "DC", "Date": "April-29-2016", "Country": "United States", "Venue": "Verizon Center", "Attendance": "14917", "Revenue": "1551880"},
+{"City": "Washington D.C.","State": "Virginia", "Abbr": "VA", "Date": "April-29-2016", "Country": "United States", "Venue": "Verizon Center", "Attendance": "14917", "Revenue": "1551880"},
 {"City": "Brooklyn","State": "New York", "Abbr": "NY", "Date": "May-4-2016", "Country": "United States", "Venue": "Barclays Center", "Attendance": "29470", "Revenue": "3075262"},
 {"City": "Philadelphia","State": "Pennsylvania", "Abbr": "PA", "Date": "May-7-2016", "Country": "United States", "Venue": "Wells Fargo Center", "Attendance": "30535", "Revenue": "3131498"},
 {"City": "Boston","State": "Massachusetts", "Abbr": "MA", "Date": "May-10-2016", "Country": "United States", "Venue": "TD Garden", "Attendance": "28406", "Revenue": "2962651"},

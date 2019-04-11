@@ -11,7 +11,7 @@
 {"City": "Nashville","State": "Tennessee", "Abbr": "TN", "Date": "August-14-2016", "Country": "United States", "Venue": "Bridgestone Arena", "Attendance": "15931", "Revenue": "1410223"},
 {"City": "Detroit","State": "Michigan", "Abbr": "MI", "Date": "August-16-2016", "Country": "United States", "Venue": "Joe Louis Arena", "Attendance": "14891", "Revenue": "1504752"},
 {"City": "Pittsburgh","State": "Pennsylvania", "Abbr": "PA", "Date": "August-17-2016", "Country": "United States", "Venue": "Consol Energy Center", "Attendance": "13622", "Revenue": "1351855"},
-{"City": "Washington","State": "D.C.", "Abbr": "DC", "Date": "August-19-2016", "Country": "United States", "Venue": "Verizon Center", "Attendance": "27663", "Revenue": "3259446"},
+{"City": "Washington D.C.","State": "Virginia", "Abbr": "VA", "Date": "August-19-2016", "Country": "United States", "Venue": "Verizon Center", "Attendance": "27663", "Revenue": "3259446"},
 {"City": "Philadelphia","State": "Pennsylvania", "Abbr": "PA", "Date": "August-21-2016", "Country": "United States", "Venue": "Wells Fargo Center", "Attendance": "13402", "Revenue": "1752511"},
 {"City": "Greensboro","State": "North Carolina", "Abbr": "NC", "Date": "August-23-2016", "Country": "United States", "Venue": "Greensboro Coliseum", "Attendance": "13720", "Revenue": "1304350"},
 {"City": "Atlanta","State": "Georgia", "Abbr": "GA", "Date": "August-25-2016", "Country": "United States", "Venue": "Philips Arena", "Attendance": "28864", "Revenue": "3106599"},

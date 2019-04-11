@@ -129,6 +129,7 @@ function renderBarCharts(data) {
             .domain([0, maxAttend])
             .range([0, height-200]);
 
+        data = sortData(data, "Revenue");
         var i = 0;
         var length = data.length;
         var rectWidth = (width-200)/length;
@@ -153,6 +154,7 @@ function renderBarCharts(data) {
             .attr("transform", "translate(100, -100)");
 
 
+        data = sortData(data, "Attendance");
         var j = 0;
         attBarChartArea.selectAll("rect")
             .data(data)
@@ -206,21 +208,18 @@ function dataWrangle(data) {
     }
 }
 
-// function renderTooltip(data){
-//     data.forEach(function(d){
-//         var tip = d3.tip()
-//         // .data(tourData.Concerts)
-//         // .enter()
-//             .attr("class", "tooltip")
-//             .direction("e")
-//             .html(function(d){
-//                 return "<p><h4>State " + d.Attendance + "</h4></p><p>Attendance: " + d.Attendance + "</p><p>Revenue: " + d.Revenue + "</p>"
-//             });
-//
-//         svg.call(tip);
-//     });
-//
-// }
+function sortData(data, measure){
+    if(measure === "Revenue"){
+        data = data.sort(function(a,b){
+            return b.Revenue - a.Revenue;
+        });
+    } else {
+        data = data.sort(function (a, b) {
+            return b.Attendance - a.Attendance;
+        });
+    }
+    return data;
+}
 
 document.getElementById("selector-select").addEventListener("change", handleChange);
 

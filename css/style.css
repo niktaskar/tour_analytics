@@ -24,3 +24,11 @@ body {
     padding: 10px;
     border-radius: 10px;
 }
+
+.xAxis {
+    font-size: 10px;
+}
+#selector-div {
+    position: fixed;
+    left: 10%;
+}

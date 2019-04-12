@@ -33,6 +33,8 @@ function loadData(tour) {
 }
 
 function createVisualization(error, tourData, mapData) {
+    svg.selectAll("path").remove();
+
         console.log(tourData);
 
         console.log(mapData);
@@ -50,6 +52,26 @@ function createVisualization(error, tourData, mapData) {
 
         dataWrangle(tourData.Concerts);
 
+    renderBarCharts(tourData.Concerts);
+
+    var sortedRevenue = tourData.Concerts.sort(function(a,b){
+        return b.Revenue - a.Revenue;
+    });
+
+    var topRevenues = sortedRevenue.filter( function(d){
+        return d.Revenue > sortedRevenue[3].Revenue;
+    });
+    console.log(topRevenues);
+
+    var sortedAttendance = tourData.Concerts.sort(function(a,b){
+        return b.Attendance - a.Attendance;
+    });
+
+    var topAttendances = sortedAttendance.filter( function(d){
+        return d.Attendance > sortedAttendance[3].Attendance;
+    });
+
+    console.log(topAttendances);
 
     svg.selectAll("path")
             .data(usa)
@@ -59,7 +81,25 @@ function createVisualization(error, tourData, mapData) {
             .attr("class", "map")
             .attr("stroke", "white")
             .attr("stroke-width", "2px")
-            .attr("fill", "lightgray")
+            .attr("fill", function(d){
+                var i = 0;
+                while(i < tourData.Concerts.length){
+                    // STATES WHERE THEY HAD THEIR BEST PERFORMANCES ON BOTH CRITERIA
+                    if(tourData.Concerts[i].Abbr === d.properties.STATE_ABBR && ((topRevenues.indexOf(tourData.Concerts[i]) !== -1) && (topAttendances.indexOf(tourData.Concerts[i]) !== -1))){
+                        return "purple";
+                    }
+                    // STATES WHERE THEY HAD THEIR HIGHEST REVENUES
+                    else if (tourData.Concerts[i].Abbr === d.properties.STATE_ABBR && (topRevenues.indexOf(tourData.Concerts[i]) !== -1)){
+                        return "red";
+                    }
+                    // STATES WHERE THEY HAD THEIR HIGHEST ATTENDANCES
+                    else if (tourData.Concerts[i].Abbr === d.properties.STATE_ABBR && (topAttendances.indexOf(tourData.Concerts[i]) !== -1)){
+                        return "blue";
+                    }
+                    i++;
+                }
+                return "lightgray";
+            })
             .attr("id", function(d) {
                 return d.properties.STATE_ABBR;
             })
@@ -99,15 +139,16 @@ function createVisualization(error, tourData, mapData) {
             .on("mouseout", function(d){
                 textArea.selectAll("text").remove();
                 d3.select(".tooltip").remove();
-                // tip.hide();
             });
 
-        renderBarCharts(tourData.Concerts);
 }
 
 function renderBarCharts(data) {
         revBarChartArea.selectAll("rect").remove();
         attBarChartArea.selectAll("rect").remove();
+
+        revBarChartArea.selectAll("g").remove();
+        attBarChartArea.selectAll("g").remove();
 
         // REVENUE SCALE
         var minRevenue = d3.min(data, function(d) {
@@ -119,7 +160,7 @@ function renderBarCharts(data) {
         });
 
         var revenueScale = d3.scaleLinear()
-            .domain([0, maxRevenue])
+            .domain([maxRevenue, 0])
             .range([0, height-200]);
 
         // ATTENDANCE SCALE
@@ -132,10 +173,42 @@ function renderBarCharts(data) {
         });
 
         var attendScale = d3.scaleLinear()
-            .domain([0, maxAttend])
+            .domain([maxAttend, 0])
             .range([0, height-200]);
 
+        var revYAxis = d3.axisLeft()
+            .scale(revenueScale);
+
+        revBarChartArea.append("g")
+            .call(revYAxis)
+            .attr("stroke", "black")
+            .attr("transform", "translate(99, 100)");
+
         data = sortData(data, "Revenue");
+
+        // X AXIS FOR REVENUE
+        var revArray = [];
+        var revXArray = [];
+
+        for(var j = 0; j < data.length; j++){
+            revArray[j] = data[j].Venue;
+            revXArray[j] = j* (width-200)/data.length + 10;
+        }
+
+        var revOrdinalScale = d3.scaleOrdinal()
+            .domain(revArray)
+            .range(revXArray);
+
+        var revXAxis = d3.axisLeft()
+            .scale(revOrdinalScale);
+
+        revBarChartArea.append("g")
+            .call(revXAxis)
+            .attr("stroke", "black")
+            .attr("transform", "translate(100, 501) rotate(-90)")
+            .attr("class", "xAxis");
+
+        // CREATE BAR CHART FOR REVENUE
         var i = 0;
         var length = data.length;
         var rectWidth = (width-200)/length;
@@ -148,16 +221,16 @@ function renderBarCharts(data) {
                 return rectWidth*(i-1);
             })
             .attr("y", function(d){
-                return height-revenueScale(d.Revenue);
+                return revenueScale(d.Revenue);
             })
             .attr("width", function(d){
                 return rectWidth-3;
             })
             .attr("height", function(d){
-                return revenueScale(d.Revenue);
+                return height-200-revenueScale(d.Revenue);
             })
             .attr("fill", "lightgray")
-            .attr("transform", "translate(100, -100)")
+            .attr("transform", "translate(100, 100)")
             .on("mouseover", function(d) {
                 var tip = d3.tip()
                     .attr("class", "tooltip")
@@ -177,8 +250,42 @@ function renderBarCharts(data) {
                 this.setAttribute("fill", "lightgray");
             });
 
+        // SCALE FOR ATTENDANCE
+        var attYAxis = d3.axisLeft()
+            .scale(attendScale);
+
+        attBarChartArea.append("g")
+            .call(attYAxis)
+            .attr("stroke", "black")
+            .attr("transform", "translate(99, 100)");
 
         data = sortData(data, "Attendance");
+
+        // CREATE X AXIS FOR ATTENDANCE
+        var attArray = [];
+        var attXArray = [];
+
+        for(var j = 0; j < data.length; j++){
+            attArray[j] = data[j].Venue;
+            attXArray[j] = j* (width-200)/data.length + 10;
+        }
+
+        console.log(attArray);
+
+        var attOrdinalScale = d3.scaleOrdinal()
+            .domain(attArray)
+            .range(attXArray);
+
+        var attXAxis = d3.axisLeft()
+            .scale(attOrdinalScale);
+
+        attBarChartArea.append("g")
+            .call(attXAxis)
+            .attr("stroke", "black")
+            .attr("transform", "translate(100, 501) rotate(-90)")
+            .attr("class", "xAxis");
+
+        // CREATE BAR CHART FOR ATTENDANCE
         var j = 0;
         attBarChartArea.selectAll("rect")
             .data(data)
@@ -189,16 +296,16 @@ function renderBarCharts(data) {
                 return rectWidth*(j-1);
             })
             .attr("y", function(d){
-                return height-attendScale(d.Attendance);
+                return attendScale(d.Attendance);
             })
             .attr("width", function(d){
                 return rectWidth-3;
             })
             .attr("height", function(d){
-                return attendScale(d.Attendance);
+                return height-200-attendScale(d.Attendance);
             })
             .attr("fill", "lightgray")
-            .attr("transform", "translate(100, -100)")
+            .attr("transform", "translate(100, 100)")
             .on("mouseover", function(d) {
                 var tip = d3.tip()
                     .attr("class", "tooltip")

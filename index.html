@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Tour Analytics</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css">
     <script type="text/javascript" src="bower_components/d3/d3.js"></script>
     <script type="text/javascript" src="bower_components/d3-tip/index.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
-<div>
-    <h1>Analytics of Major Domestic Music Tours</h1>
-    <br>
-    <h2>Using data from various artists' tours, the aim is to display which venues/states garner the highest
-        audiences and revenue for each artist, and to uncover underlying factors of audience turnout.
-    </h2>
-    <br>
-    <h2>We have a map of the US to help visualize the locations and states, below that we have a few bar charts
-        to show different measurement criteria.
-    </h2>
+<div class="navbar bg-light navbar-expand-lg container-fluid sticky-top">
+    <a class="navbar navbar-brand" href="index.html">Music Tour Analytics</a>
+    <a class="navbar navbar-item" href="processBook.html">Process Book</a>
+    <a class="navbar navbar-item" href="https://github.com/niktaskar/tour_analytics" target="_blank">Github Page <i class="fas fa-external-link-alt"></i></a>
 </div>
+<br>
+<br>
 <div id="selector-div">
     <select id="selector-select">
         <option id="weeknd">The Weeknd</option>
@@ -26,11 +24,29 @@
         <option id="lamar">Kendrick Lamar</option>
         <option id="bieber">Justin Bieber</option>
         <option id="drake">Drake</option>
+        <option id="mendes">Shawn Mendes</option>
+        <option id="grande">Ariana Grande</option>
+        <option id="pitbull">Pitbull</option>
+        <option id="mars">Bruno Mars</option>
+        <option id="jayz">Jay-Z</option>
+        <option id="maluma">Maluma</option>
     </select>
 </div>
 
 <div id="chart-area" class="chart-div">
     <h3>Location of Performances with Total Attendance and Revenue by State</h3>
+    <svg width="15" height="15">
+        <rect width="15" height="15" x="0" y="0" fill="purple"></rect>
+    </svg>
+    <text>Top 5 Performance Overall</text>
+    <svg width="15" height="15">
+        <rect width="15" height="15" x="0" y="0" fill="red"></rect>
+    </svg>
+    <text>Top 5 Performance in terms of Revenue</text>
+    <svg width="15" height="15">
+        <rect width="15" height="15" x="0" y="0" fill="blue"></rect>
+    </svg>
+    <text>Top 5 Performance in terms of Attendance</text>
     <div id="text-area">
 
     </div>

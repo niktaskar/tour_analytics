@@ -1,7 +1,7 @@
 var height = 600;
 var width = 1000;
-var artists = ["weeknd", 'beyonce', "lamar", "bieber", "drake"];
-var tours = ["Starboy:_Legend_of_the_Fall_Tour", "The_Formation_World_Tour", "The_Damn_Tour", "Purpose_World_Tour", "Summer_Sixteen_Tour"];
+var artists = ["weeknd", 'beyonce', "lamar", "bieber", "drake", "mendes", "grande", "pitbull", "mars", "jayz", "maluma"];
+var tours = ["Starboy:_Legend_of_the_Fall_Tour", "The_Formation_World_Tour", "The_Damn_Tour", "Purpose_World_Tour", "Summer_Sixteen_Tour", "Illuminate_World_Tour", "Dangerous_Woman_Tour", "Enrique_Iglesias_and_Pitbull_Live", "24K_Magic_World_Tour", "On_the_Run_II_Tour", "F.A.M.E._Tour_(Maluma)"];
 var defaultTour = tours[0];
 
 var attBarChartArea = d3.select("#att-barchart-area").append("svg")
@@ -35,22 +35,22 @@ function loadData(tour) {
 function createVisualization(error, tourData, mapData) {
     svg.selectAll("path").remove();
 
-        console.log(tourData);
+    console.log(tourData);
 
-        console.log(mapData);
+    console.log(mapData);
 
-        // console.log(statesData);
+    // console.log(statesData);
 
-        var projection = d3.geoAlbersUsa()
-            .translate([width / 2, height / 2]);
+    var projection = d3.geoAlbersUsa()
+        .translate([width / 2, height / 2]);
 
-        var path = d3.geoPath()
-            .projection(projection);
+    var path = d3.geoPath()
+        .projection(projection);
 
-        var usa = topojson.feature(mapData, mapData.objects.usStates).features;
+    var usa = topojson.feature(mapData, mapData.objects.usStates).features;
 
 
-        dataWrangle(tourData.Concerts);
+    dataWrangle(tourData.Concerts);
 
     renderBarCharts(tourData.Concerts);
 
@@ -59,7 +59,7 @@ function createVisualization(error, tourData, mapData) {
     });
 
     var topRevenues = sortedRevenue.filter( function(d){
-        return d.Revenue > sortedRevenue[3].Revenue;
+        return d.Revenue > sortedRevenue[5].Revenue;
     });
     console.log(topRevenues);
 
@@ -68,7 +68,7 @@ function createVisualization(error, tourData, mapData) {
     });
 
     var topAttendances = sortedAttendance.filter( function(d){
-        return d.Attendance > sortedAttendance[3].Attendance;
+        return d.Attendance > sortedAttendance[5].Attendance;
     });
 
     console.log(topAttendances);
@@ -338,6 +338,18 @@ function handleChange(){
         artist = "bieber";
     } else if(artist === "Drake"){
         artist = "drake";
+    } else if(artist === "Shawn Mendes"){
+        artist = "mendes";
+    } else if(artist === "Ariana Grande"){
+        artist = "grande";
+    } else if(artist === "Pitbull"){
+        artist = "pitbull";
+    } else if(artist === "Bruno Mars"){
+        artist = "mars";
+    } else if(artist === "Jay-Z"){
+        artist = "jayz";
+    } else if(artist === "Maluma"){
+        artist = "maluma";
     }
 
     var index = artists.indexOf(artist);
@@ -369,5 +381,6 @@ function sortData(data, measure){
 }
 
 document.getElementById("selector-select").addEventListener("change", handleChange);
+document.getElementById("selector-select").addEventListener("click", handleChange);
 
 loadData(defaultTour);

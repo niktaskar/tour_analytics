@@ -4,7 +4,8 @@ chrome_path = "/Users/nikashtaskar/Desktop/cse457/chromedriver"
 driver = webdriver.Chrome(chrome_path)
 
 wiki = "https://en.wikipedia.org/wiki/"
-tours = ["The_Damn_Tour", "Purpose_World_Tour", "Summer_Sixteen_Tour", "Starboy:_Legend_of_the_Fall_Tour", "The_Formation_World_Tour"]
+# tours = ["The_Damn_Tour", "Purpose_World_Tour", "Summer_Sixteen_Tour", "Starboy:_Legend_of_the_Fall_Tour", "The_Formation_World_Tour"]
+tours = ["Illuminate_World_Tour", "Dangerous_Woman_Tour", "Enrique_Iglesias_and_Pitbull_Live", "24K_Magic_World_Tour", "On_the_Run_II_Tour", "F.A.M.E._Tour_(Maluma)"]
 
 def loadPage(tour):
     driver.get(wiki+tour)

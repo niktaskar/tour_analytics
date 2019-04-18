@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Process Book - musictours</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/processStyle.css" type="text/css">
+</head>
+<body>
+<div class="navbar bg-light navbar-expand-lg container-fluid sticky-top">
+    <a class="navbar navbar-brand" href="index.html">Music Tour Analytics</a>
+    <a class="navbar navbar-item" href="processBook.html">Process Book</a>
+    <a class="navbar navbar-item" href="https://github.com/niktaskar/tour_analytics" target="_blank">Github Page <i class="fas fa-external-link-alt"></i></a>
+</div>
+<ol>
+  <h1>Process Book:</h1>
+  <h3>Music Tours Visualization by Ian Katzman and Nikash Taskar</h3>
+  <h2><li>
+    Overview and Motivation:
+  </li></h2>
+  <ul>
+    <li>The main goal of this project is to create a visualization that shows useful data about how successful certain musical artists are on
+        tour. We do this by displaying different information on a US Map and bar graphs (as of right now). We gathered this information from
+        Wikipedia pages specific to the tours we are using (more about that later), and we created the visualization using d3 Javascript.</li>
+    <li>Our main motivation for this project comes from us being avid music fans. We really enjoy music, and going to concerts, but it seems that
+        a lot of major artists tend to avoid coming to St. Louis. We were curious as to why artists avoid St. Louis, and some cities, and tend to
+        gravitate towards other cities. We thought that if we could gather information about different artist's performances, like the attendance,
+        revenue, etc, we can start to determine which cities artists have the most success in.</li>
+  </ul>
+  <h2><li>
+    Related Work:
+  </li></h2>
+  <ul>
+    <li>We were not directly inspired by a specific dataset or visualization, but as stated earlier we were inspired to answer a question
+        we had noticed about a certain trend with tour stops by musical artists. That is, we were inspired to answer the question as to why
+        artists tend to stop more at some cities rather than other cities.</li>
+  </ul>
+  <h2><li>
+    Questions:
+  </li></h2>
+  <ul>
+    <li>What stops were the most attended for each artist on their tour?</li>
+    <li>What stops were the least attended for each artist on their tour?</li>
+    <li>What stops made the most money for each artist on their tour?</li>
+    <li>What stops made the least money for each artist on their tour?</li>
+    <h3>We began with the questions above as a baseline, but as we were working we realized we needed to look into data that involved all
+        of the tours we were studying, so we formed some more questions like:</h3>
+    <li>What stops were the most attended overall?</li>
+    <li>What stops were the least attended overall?</li>
+    <li>What stops made the most money overall?</li>
+    <li>What stops made the least money overall?</li>
+    <li>Were there any stops made by all artists? Only one artist? What is the crossover like?</li>
+    <h3>We will most likely try to come up with more questions before the final project is due.</h3>
+  </ul>
+  <h2><li>
+    Data
+  </li></h2>
+  <ul>
+    <li>We got our data from 5 Wikipedia pages with information about 5 specific artists' tours:</li>
+      <ul>
+        <li>Kendrick Lamar: The Damn Tour - <a href="https://en.wikipedia.org/wiki/The_Damn_Tour">https://en.wikipedia.org/wiki/The_Damn_Tour</a></li>
+        <li>Beyonce: The Formation World Tour - <a href="https://en.wikipedia.org/wiki/The_Formation_World_Tour">https://en.wikipedia.org/wiki/The_Formation_World_Tour</a></li>
+        <li>The Weeknd: Starboy: Legend of the Fall Tour - <a href="https://en.wikipedia.org/wiki/Starboy:_Legend_of_the_Fall_Tour">https://en.wikipedia.org/wiki/Starboy:_Legend_of_the_Fall_Tour</a></li>
+        <li>Drake: Summer Sixteen Tour - <a href="https://en.wikipedia.org/wiki/Summer_Sixteen_Tour">https://en.wikipedia.org/wiki/Summer_Sixteen_Tour</a></li>
+        <li>Justin Bieber: Purpose World Tour - <a href="https://en.wikipedia.org/wiki/Purpose_World_Tour">https://en.wikipedia.org/wiki/Purpose_World_Tour</a></li>
+      </ul>
+    <li>This data was gathered and cleaned using a webcrawler created in Python. We isolated the data from the charts that were on each Wikipedia page that displayed
+        data about each stop on the tour, and put that data into separate JSON files for each tour. We got data about each tour stop in these categories:
+        <ul>
+          <li>City of tour stop</li>
+          <li>State of tour stop</li>
+          <li>Abbreviation of that state</li>
+          <li>Date of tour stop</li>
+          <li>Country of tour stop (should be United States for all of them</li>
+          <li>Venue of tour stop</li>
+          <li>Attendance of tour stop</li>
+          <li>Revenue of tour stop</li>
+        </ul>
+    </li>
+  </ul>
+  <h2><li>
+    Exploratory Data Analysis:
+  </li></h2>
+  <ul>
+    <li>The first way that we saw our data was looking at the charts on the Wikipedia pages. An example of one of these charts is shown below.
+        These charts were extremely helpful as they contained almost all of the information we needed in order to create the visualization we
+        wanted to create. We struggled at first to find a reliable data source that wouldn't cost money or be illegal to access, so finding these
+        charts was a relief. They helped us to create the final form of what we wanted our design to be, because they gave us specific information
+        that were were looking for, like attendance and revenue for each spot in particular.</li>
+    <li>Example of one of the charts we used:
+      <br>
+        <img style="width: 50%" src="images/chartexample.png"/></li>
+  </ul>
+  <h2><li>
+    Design Evolution:
+  </li></h2>
+  <ul>
+    We generally have stuck with the design we originally imagined, but we have added on a lot of extra features along the way:
+    <ul>
+      <li>Our first and original design (from milestone 1) was a USA map that displayed information about each state based on
+          whether or not the selected artist had a tour stop in that state</li>
+      <li>We then added the information by using tooltips for each state, that either displayed the tour stop information or a message
+          stating there was no stop for that tour in that state</li>
+      <li>Then we added bar charts below the USA Map that displayed the venues from highest to lowest based on attendance, and venues
+          from highest to lowest based on revenue (in two separate bar charts)</li>
+      <li>Our most recent change is adding color to our USA map to signify the highest revenue and attendance for each tour, and for all
+          the tours. Purple designated the highest state in both revenue and attendance, red is for the state with the highest revenue,
+          and blue is for the state with the highest attendance.</li>
+      <li>We plan on adding more features for the final submit.</li>
+    </ul>
+  </ul>
+  <h2><li>
+    Implementation:
+  </li></h2>
+  <ul>
+    <li>The USA map for a specific artist:
+        <br>
+        <img style="width: 50%" src="images/mapdisplay.png"/></li>
+    </li>
+    <li>The USA map for a specific artist when you hover your mouse over a state:
+      <br>
+      <img style="width: 50%" src="images/mapttdisplay.png"/></li>
+    </li>
+    <li>The revenue bar chart for a specific artist, which is displayed when an artist is chosen in the selector:
+        <br>
+        <img style="width: 50%" src="images/revenuedisplay.png"/></li>
+    </li>
+    <li>The attendance bar chart for a specific artist, which is displayed when an artist is chosen in the selector:
+      <br>
+      <img style="width: 50%" src="images/attendancedisplay.png"/></li>
+    </li>
+    <li>The revenue bar chart for a specific artist, when you hover over one of the bars:
+      <br>
+      <img style="width: 50%" src="images/revenuettdisplay.png"/></li>
+    </li>
+    <li>The attendance bar chart for a specific artist, when you hover over one of the bars:
+      <br>
+      <img style="width: 50%" src="images/attendancettdisplay.png"/></li>
+    </li>
+  </ul>
+  <h2><li>
+    Evaluation:
+  </li></h2>
+  <ul>
+    <li>From this project we were able to determine what states and cities usually provide the most success for artists. We were able
+        to find trends about certain cities that tend to not perform well for artists. We hope to dive deeper into trends for our final
+        version of the project, to truly find the answers we set out to find in this project.</li>
+    <li>Our visualization works pretty well. There are some bugs we still have to fix, and some styling to fix, but the general
+        functionality is exactly how we wanted it to be at this stage. Overall we are satisfied with our work so far.</li>
+  </ul>
+</ol>
+</body>
+</html>

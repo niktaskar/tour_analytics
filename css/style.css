@@ -21,9 +21,9 @@ body {
 }
 
 h3{
-    width: 70%;
-    margin-left: 15%;
-    margin-right: 15%;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 .tooltip {
@@ -44,7 +44,7 @@ h3{
     /*margin-left: 5%;*/
     height: 100%;
     z-index: 1;
-    width: 15%;
+    width: 18%;
 }
 
 a {
@@ -72,4 +72,8 @@ i {
     left: 95%;
     top: 90%;
     height: 100%;
+}
+
+#barchart-area {
+    margin-left: 10%;
 }

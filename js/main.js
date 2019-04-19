@@ -2,20 +2,23 @@ var height = 600;
 var width = 1000;
 var barWidth = 1100;
 var artists = ["weeknd", 'beyonce', "lamar", "bieber", "drake", "mendes", "grande", "pitbull", "mars", "jayz", "maluma"];
-var descriptions = ["This is The Weeknd", "This is Beyonce", "This is Kendrick Lamar", "This is Justin Bieber", "This is Drake", "This is Shawn Mendes", "This is Ariana Grande", "This is Pitbull", "This is Bruno Mars", "This is Jay-Z", "This is Maluma"];
+var descriptions = ["Abel Makkonen Tesfaye (born 16 February 1990), better known by his stage name The Weeknd, is a Canadian singer, songwriter, and record producer. The Weeknd has helped to broaden the musical palette of R&B by incorporating indie and electronic music influences; his work has been categorized as alternative R&B.",
+                    "Beyoncé Giselle Knowles-Carter is an American singer, songwriter, actress, director, record producer and dancer. She was born and raised in Houston, Texas. Her work has been categorized as a mix of R&B, pop, and hip hop.",
+                    "Kendrick Lamar Duckworth (born June 17, 1987) is an American rapper, songwriter, and record producer. He was born and raised in Compton, California. He is regarded as one of the most skillful and successful hip hop artists of his generation.",
+                    "Justin Drew Bieber (born March 1, 1994) is a singer-songwriter. After talent manager Scooter Braun discovered his YouTube videos covering songs, he was signed to RBMG in 2008. He was born in London, Ontario, Canada. His genre of music is best described as pop, R&B, and dance-pop.",
+                    "Aubrey Drake Graham (born October 24, 1986) is a rapper, singer, songwriter, actor, producer, and entrepreneur. He was born in Toronto, Ontario, Canada. After being an actor for many years, he decided to pursue a career in music in 2007. His genres of music are hip-hop, R&B, and pop.",
+                    "Shawn Peter Raul Mendes (born August 8, 1998) is a Canadian singer, songwriter, and model. In 2014 caught the attention of artist manager Andrew Gertler and Island Records A&R Ziggy Chareton, which led to him signing a deal with the record label. His genres of music include pop, folk-pop, and pop-rock.",
+                    "Ariana Grande-Butera (born June 26, 1993) is an American singer, songwriter and actress. Born in Boca Raton, Florida to a family of New York-Italian origin, she began her career in 2008 in the Broadway musical 13. Her genre of music is classified as a mix of pop and R&B.",
+                    "Armando Christian Pérez (born January 15, 1981), known by the stage name Pitbull, was born in Miami, Florida. His first recorded mainstream performance was on a solo track from Lil Jon's 2002 album Kings of Crunk. He began his career as a rapper, but later rebranded himself as a pop artist.",
+                    "Peter Gene Hernandez (born October 8, 1985), known professionally as Bruno Mars, is a singer, songwriter, multi-instrumentalist, record producer, and dancer born in Honolulu, Hawaii. He is known for performing in a wide range of musical styles, including R&B, funk, pop, soul, reggae, hip hop, and rock.",
+                    "Shawn Corey Carter (born December 4, 1969), known professionally as Jay-Z is an American rapper, songwriter, record producer, entrepreneur, and record executive. He is regarded as one of the world's most significant rappers and cultural icons and has been a global figure in popular culture for over two decades.",
+                    "Juan Luis Londoño Arias (born 28 January 1994), known professionally as Maluma, is a Colombian singer and songwriter, signed to Sony Music Colombia and Sony Latin. He has won a Latin Grammy Award and two Latin American Music Awards. His musical genres include reggaeton, latin trap, and latin pop."];
 var tours = ["Starboy:_Legend_of_the_Fall_Tour", "The_Formation_World_Tour", "The_Damn_Tour", "Purpose_World_Tour", "Summer_Sixteen_Tour", "Illuminate_World_Tour", "Dangerous_Woman_Tour", "Enrique_Iglesias_and_Pitbull_Live", "24K_Magic_World_Tour", "On_the_Run_II_Tour", "F.A.M.E._Tour_(Maluma)"];
 var defaultTour = tours[0];
 var defaultData = [];
 
-// var attBarChartArea = d3.select("#att-barchart-area").append("svg")
-//     .attr("id", "attBar-svg")
-//     .attr("height", height)
-//     .attr("width", width);
-//
-// var revBarChartArea = d3.select("#rev-barchart-area").append("svg")
-//     .attr("id", "revBar-svg")
-//     .attr("height", height)
-//     .attr("width", width);
+
+document.getElementById("description").innerHTML = "<p><img src='images/weeknd.jpg'/><br>" + descriptions[0] + "<br><iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/34Na4j8AVgA\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></p>";
 
 var barChartArea = d3.select("#barchart-area").append("svg")
     .attr("id", "bar-svg")
@@ -88,12 +91,9 @@ function createVisualization(error, tourData, mapData) {
         tourDataReducedFinal.push(tourDataReduced[val]);
     }
 
-    // renderBarCharts(tourData.Concerts);
-    // renderBarCharts(tourDataReducedFinal);
-
     defaultData = tourDataReducedFinal;
 
-    renderBarChartDouble(tourDataReducedFinal);
+    renderBarChart(tourDataReducedFinal);
 
     var totals = [];
 
@@ -196,7 +196,7 @@ function createVisualization(error, tourData, mapData) {
         });
 }
 
-function renderBarChartDouble(data){
+function renderBarChart(data){
     barChartArea.selectAll("rect").remove();
     barChartArea.selectAll("g").remove();
     
@@ -361,225 +361,51 @@ function renderBarChartDouble(data){
         .attr("class", "xAxis");
 }
 
-// function renderBarCharts(data) {
-//     revBarChartArea.selectAll("rect").remove();
-//     attBarChartArea.selectAll("rect").remove();
-//
-//     revBarChartArea.selectAll("g").remove();
-//     attBarChartArea.selectAll("g").remove();
-//
-//     // REVENUE SCALE
-//     var minRevenue = d3.min(data, function(d) {
-//         return d.Revenue;
-//     });
-//
-//     var maxRevenue = d3.max(data, function(d) {
-//         return d.Revenue;
-//     });
-//
-//     var revenueScale = d3.scaleLinear()
-//         .domain([maxRevenue, 0])
-//         .range([0, height-200]);
-//
-//     // ATTENDANCE SCALE
-//     var minAttend = d3.min(data, function(d) {
-//         return d.Attendance;
-//     });
-//
-//     var maxAttend = d3.max(data, function(d) {
-//         return d.Attendance;
-//     });
-//
-//     var attendScale = d3.scaleLinear()
-//         .domain([maxAttend, 0])
-//         .range([0, height-200]);
-//
-//     var revYAxis = d3.axisLeft()
-//         .scale(revenueScale);
-//
-//     revBarChartArea.append("g")
-//         .call(revYAxis)
-//         .attr("stroke", "black")
-//         .attr("transform", "translate(99, 100)");
-//
-//     data = sortData(data, "Revenue");
-//
-//     // X AXIS FOR REVENUE
-//     var revArray = [];
-//     var revXArray = [];
-//
-//     for(var j = 0; j < data.length; j++){
-//         // revArray[j] = data[j].Venue;
-//         revArray[j] = data[j].City;
-//         revXArray[j] = j* (width-200)/data.length + 10;
-//     }
-//
-//     // console.log(revArray);
-//     // console.log(revXArray);
-//
-//     var revOrdinalScale = d3.scaleOrdinal()
-//         .domain(revArray)
-//         .range(revXArray);
-//
-//     var revXAxis = d3.axisLeft()
-//         .scale(revOrdinalScale);
-//
-//     revBarChartArea.append("g")
-//         .call(revXAxis)
-//         .attr("stroke", "black")
-//         .attr("transform", "translate(100, 501) rotate(-90)")
-//         .attr("class", "xAxis");
-//
-//     // CREATE BAR CHART FOR REVENUE
-//     var i = 0;
-//     var length = data.length;
-//     var rectWidth = (width-200)/length;
-//     revBarChartArea.selectAll("rect")
-//         .data(data)
-//         .enter()
-//         .append("rect")
-//         .attr("x", function(d){
-//             i++;
-//             return rectWidth*(i-1);
-//         })
-//         .attr("y", function(d){
-//             return revenueScale(d.Revenue);
-//         })
-//         .attr("width", function(d){
-//             return rectWidth-3;
-//         })
-//         .attr("height", function(d){
-//             return height-200-revenueScale(d.Revenue);
-//         })
-//         .attr("fill", "lightgray")
-//         .attr("transform", "translate(100, 100)")
-//         .on("mouseover", function(d) {
-//             var tip = d3.tip()
-//                 .attr("class", "tooltip")
-//                 .direction("e")
-//                 .html(function(){
-//                     return "<p><h4>City: " + d.City + "</h4><p>Venue: " + d.Venue + "</p></p>"+"</p><p>Revenue: $" + d.Revenue + "</p>"
-//                 });
-//
-//             svg.call(tip);
-//
-//             tip.show();
-//
-//             this.setAttribute("fill", "darkgray");
-//         })
-//         .on("mouseout", function(d){
-//             d3.select(".tooltip").remove();
-//             this.setAttribute("fill", "lightgray");
-//         });
-//
-//     // SCALE FOR ATTENDANCE
-//     var attYAxis = d3.axisLeft()
-//         .scale(attendScale);
-//
-//     attBarChartArea.append("g")
-//         .call(attYAxis)
-//         .attr("stroke", "black")
-//         .attr("transform", "translate(99, 100)");
-//
-//     data = sortData(data, "Attendance");
-//
-//     // CREATE X AXIS FOR ATTENDANCE
-//     var attArray = [];
-//     var attXArray = [];
-//
-//     for(var j = 0; j < data.length; j++){
-//         // attArray[j] = data[j].Venue;
-//         attArray[j] = data[j].City;
-//         attXArray[j] = j* (width-200)/data.length + 10;
-//     }
-//
-//     var attOrdinalScale = d3.scaleOrdinal()
-//         .domain(attArray)
-//         .range(attXArray);
-//
-//     var attXAxis = d3.axisLeft()
-//         .scale(attOrdinalScale);
-//
-//     attBarChartArea.append("g")
-//         .call(attXAxis)
-//         .attr("stroke", "black")
-//         .attr("transform", "translate(100, 501) rotate(-90)")
-//         .attr("class", "xAxis");
-//
-//     // CREATE BAR CHART FOR ATTENDANCE
-//     var j = 0;
-//     attBarChartArea.selectAll("rect")
-//         .data(data)
-//         .enter()
-//         .append("rect")
-//         .attr("x", function(d){
-//             j++;
-//             return rectWidth*(j-1);
-//         })
-//         .attr("y", function(d){
-//             return attendScale(d.Attendance);
-//         })
-//         .attr("width", function(d){
-//             return rectWidth-3;
-//         })
-//         .attr("height", function(d){
-//             return height-200-attendScale(d.Attendance);
-//         })
-//         .attr("fill", "lightgray")
-//         .attr("transform", "translate(100, 100)")
-//         .on("mouseover", function(d) {
-//             var tip = d3.tip()
-//                 .attr("class", "tooltip")
-//                 .direction("e")
-//                 .html(function(){
-//                     return "<p><h4>City: " + d.City + "</h4><p>Venue: " + d.Venue + "</p></p>"+"</p><p>Attendance: " + d.Attendance + "</p>"
-//                 });
-//
-//             svg.call(tip);
-//
-//             tip.show();
-//
-//             this.setAttribute("fill", "darkgray");
-//         })
-//         .on("mouseout", function(d){
-//             d3.select(".tooltip").remove();
-//             this.setAttribute("fill", "lightgray");
-//         });
-//
-// }
-
 function handleChange(){
     var artist = document.getElementById("selector-select").value;
+    var youtube = "";
 
     if(artist === "The Weeknd"){
         artist = "weeknd";
+        youtube = "<iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/34Na4j8AVgA\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
     } else if(artist === "Beyonce"){
         artist = "beyonce";
+        youtube = "\n" +
+            "<iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/WDZJPJV__bQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
     } else if(artist === "Kendrick Lamar"){
         artist = "lamar";
+        youtube = "<iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/NLZRYQMLDW4\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
     } else if(artist === "Justin Bieber"){
         artist = "bieber";
+        youtube = "<iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/DK_0jXPuIr0\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
     } else if(artist === "Drake"){
         artist = "drake";
+        youtube = "<iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/xpVfcZ0ZcFM\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
     } else if(artist === "Shawn Mendes"){
         artist = "mendes";
+        youtube = "<iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/sJUGAIf1Px0\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
     } else if(artist === "Ariana Grande"){
         artist = "grande";
+        youtube = "<iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/gl1aHhXnN1k\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
     } else if(artist === "Pitbull"){
         artist = "pitbull";
+        youtube = "<iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/2up_Eq6r6Ko\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
     } else if(artist === "Bruno Mars"){
         artist = "mars";
+        youtube = "<iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/PMivT7MJ41M\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
     } else if(artist === "Jay-Z"){
         artist = "jayz";
+        youtube = "<iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/zSkA61esq_c\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
     } else if(artist === "Maluma"){
         artist = "maluma";
+        youtube = "<iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/iMEhjsiHbwM\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
     }
 
     var index = artists.indexOf(artist);
 
     var tour = tours[index];
 
-    document.getElementById("description").innerText = descriptions[index];
+    document.getElementById("description").innerHTML = "<p><img src='images/" + artist + ".jpg'/><br>" + descriptions[index] + "<br>" + youtube + "</p>";
 
     loadData(tour);
 
@@ -591,19 +417,6 @@ function dataWrangle(data) {
         data[i].Revenue = parseInt(data[i].Revenue);
     }
 }
-
-// function sortData(data, measure){
-//     if(measure === "Revenue"){
-//         data = data.sort(function(a,b){
-//             return b.Revenue - a.Revenue;
-//         });
-//     } else {
-//         data = data.sort(function (a, b) {
-//             return b.Attendance - a.Attendance;
-//         });
-//     }
-//     return data;
-// }
 
 document.getElementById("selector-select").addEventListener("change", handleChange);
 // document.getElementById("selector-select").addEventListener("click", handleChange);

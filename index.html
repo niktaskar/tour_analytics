@@ -31,6 +31,9 @@
         <option id="jayz">Jay-Z</option>
         <option id="maluma">Maluma</option>
     </select>
+    <br>
+    <br>
+    <p id="description"></p>
 </div>
 
 <div id="chart-area" class="chart-div">
@@ -50,18 +53,43 @@
     <div id="text-area">
 
     </div>
-
 </div>
 
-<div id="rev-barchart-area" class="chart-div">
-    <h3>Revenue Across All Performances</h3>
-
+<div id="arrow-div">
+    <a href="#barchart-area"><button><i class="fas fa-arrow-down"></i></button></a>
 </div>
 
-<div id="att-barchart-area" class="chart-div">
-    <h3>Attendance Across All Performances</h3>
-
+<div id="barchart-area" class="chart-div">
+    <h3>Revenue and Attendance Per Performance</h3>
+    <div id="sort-div">
+        <select id="sort-select">
+            <option id="default">Default</option>
+            <option id="attendance">Attendance</option>
+            <option id="revenue">Revenue</option>
+        </select>
+    </div>
+    <br>
+    <div>
+        <svg width="15" height="15">
+            <rect width="15" height="15" x="0" y="0" fill="lightgray"></rect>
+        </svg>
+        <text>Revenue</text>
+        <svg width="15" height="15">
+            <rect width="15" height="15" x="0" y="0" fill="darkgray"></rect>
+        </svg>
+        <text>Attendance</text>
+    </div>
 </div>
+
+<!--<div id="rev-barchart-area" class="chart-div">-->
+<!--    <h3>Revenue Across All Performances</h3>-->
+
+<!--</div>-->
+
+<!--<div id="att-barchart-area" class="chart-div">-->
+<!--    <h3>Attendance Across All Performances</h3>-->
+
+<!--</div>-->
 
 <script src="js/topojson.js"></script>
 <script src="js/topojson.v1.min.js"></script>

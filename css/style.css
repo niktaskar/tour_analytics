@@ -35,14 +35,16 @@ h3{
 }
 
 .xAxis {
-    font-size: 10px;
+    font-size: 12px;
+    /*font-family: monospace;*/
 }
 
 #selector-div {
     position: fixed;
-    left: 5%;
+    /*margin-left: 5%;*/
     height: 100%;
     z-index: 1;
+    width: 15%;
 }
 
 a {
@@ -53,14 +55,21 @@ button {
     border-radius: 5px;
 }
 
-.navbar {
-    /*font-size: 16px;*/
-}
-
 i {
     width: 25px;
 }
 
 #legend {
     margin-top: 20px;
+}
+
+#arrow-div button {
+    padding: 5px;
+}
+
+#arrow-div {
+    position: fixed;
+    left: 95%;
+    top: 90%;
+    height: 100%;
 }

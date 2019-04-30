@@ -41,7 +41,7 @@ h3{
 
 #selector-div {
     position: fixed;
-    /*margin-left: 5%;*/
+    top: 100px;
     height: 100%;
     z-index: 1;
     width: 18%;
@@ -67,13 +67,107 @@ i {
     padding: 5px;
 }
 
-#arrow-div {
+#arrow-div-pie{
     position: fixed;
-    left: 95%;
-    top: 90%;
+    left: 88%;
+    top: 80%;
     height: 100%;
+    width: 5%;
+    font-size: 12px;
+}
+
+#arrow-div-bar{
+    position: fixed;
+    left: 94%;
+    top: 80%;
+    height: 100%;
+    width: 5%;
+    font-size: 12px;
+}
+
+#arrow-div-div{
+    position: fixed;
+    left: 82%;
+    top: 80%;
+    height: 100%;
+    width: 5%;
+    font-size: 12px;
 }
 
 #barchart-area {
     margin-left: 10%;
+}
+
+#barchart-area2 {
+    margin-left: 10%;
+}
+
+.modal-title{
+    text-align: center;
+}
+
+.map {
+    fill-opacity: 1.0;
+}
+
+.map:hover{
+    fill-opacity: 0.75;
+}
+
+.pie {
+    fill-opacity: 0.5;
+}
+
+.pie:hover{
+    fill-opacity: 1.0;
+}
+
+#mapEx {
+    color: black;
+    position: relative;
+    top: -10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#pieEx {
+    color: black;
+    position: relative;
+    top: -10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#barEx {
+    color: black;
+    position: relative;
+    top: -10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#descEx {
+    color: black;
+    position: relative;
+    top: -10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#compareModal {
+    color: black;
+    position: relative;
+    top: -10px;
+    margin-left: 20px;
+    /*background-color: darkgray;*/
+}
+
+.container {
+    text-align: left;
+}
+
+.chart-div2 {
+    position: relative;
+    top: 20px;
+    margin-bottom: 0px;
 }

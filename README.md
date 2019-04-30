@@ -29,3 +29,10 @@ Please inspect the web page when changing the select option.
 * Added data to the US Map set up in the first milestone. If you hover over a state it displays a tooltip that either has information about the tour stops in that state, or says that there were no performances in that state. We also added color coding, purple states are the top 5 best performing states overall for each tour, red states are the best performing states for revenue, and blue states are the best performing states for attendance.
 * Added bar graphs displaying information about each venue on a tour, which displays information specific to each venue on hover of a bar.
 
+#### Final Submit:
+* Fixed color contrast on main map.
+* Added modal pop ups to explain key features of visualization.
+* Added an on-click function for each state on the map that displays a pie chart for that state. The pie chart displays the revenues for each venue in that state and the percentage of the revenue that venue makes up for the total state's revenue.
+* Added a second bar chart to compare artists revenue and attendance per city. 
+* Added many smaller style changes to make the overall usability and readability of the site better.
+

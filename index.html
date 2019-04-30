@@ -2,18 +2,132 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tour Analytics</title>
+    <title>Music Tour Analytics</title>
     <script type="text/javascript" src="bower_components/d3/d3.js"></script>
     <script type="text/javascript" src="bower_components/d3-tip/index.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
 <div class="navbar bg-light navbar-expand-lg container-fluid sticky-top">
     <a class="navbar navbar-brand" href="index.html">Music Tour Analytics</a>
     <a class="navbar navbar-item" href="processBook.html">Process Book</a>
+    <a class="navbar navbar-item" href="https://youtu.be/NnHrs88nJg8" target="_blank">Screencast <i class="fas fa-external-link-alt"></i></a>
     <a class="navbar navbar-item" href="https://github.com/niktaskar/tour_analytics" target="_blank">Github Page <i class="fas fa-external-link-alt"></i></a>
+    <button id="descEx" class="btn btn-default" data-toggle="modal" data-target="#desc">Project Description</button>
+    <button id="mapEx" class="btn btn-default" data-toggle="modal" data-target="#mapExplain">Map Description</button>
+    <button id="pieEx" class="btn btn-default" data-toggle="modal" data-target="#pieExplain">Pie Chart Description</button>
+    <button id="barEx" class="btn btn-default" data-toggle="modal" data-target="#barExplain">Bar Chart Description</button>
+
+</div>
+<div class="container">
+    <div class="modal fade" id="desc" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Project Description</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <ul>
+                            <li>The main goal of this project is to create a visualization that shows useful data about how successful certain musical artists are on tour.
+                                We do this by displaying different information on a US Map and bar graphs (as of right now). We gathered this information from Wikipedia
+                                pages specific to the tours we are using (more about that later), and we created the visualization using d3 Javascript.</li>
+                            <li>Our main motivation for this project comes from us being avid music fans. We really enjoy music, and going to concerts, but it seems that a
+                                lot of major artists tend to avoid coming to St. Louis. We were curious as to why artists avoid St. Louis, and some cities, and tend to gravitate
+                                towards other cities. We thought that if we could gather information about different artist's performances, like the attendance, revenue,
+                                etc, we can start to determine which cities artists have the most success in.</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="mapExplain" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">US Map Color Coding Explanation</h4>
+                </div>
+                <div class="modal-body">
+                    <strong>This information corresponds to the artist chosen in the selector on the left of the page.</strong>
+                    <br>
+                    <br>
+                    <p><svg width="15" height="15">
+                        <rect width="15" height="15" x="0" y="0" fill="purple"></rect>
+                    </svg>
+                        <text>Top 5 Performance with respect to artist performances overall. If a state has
+                              both a top 5 revenue value and a top 5 attendance value it will be purple.</text><br>
+                        <svg width="15" height="15">
+                            <rect width="15" height="15" x="0" y="0" fill="red"></rect>
+                        </svg>
+                        <text>Top 5 Performance in terms of only revenue. If a state has a top 5 revenue
+                              value but not a top 5 attendance value it will be red.</text><br>
+                        <svg width="15" height="15">
+                            <rect width="15" height="15" x="0" y="0" fill="blue"></rect>
+                        </svg>
+                        <text>Top 5 Performance in terms of only attendance. If a state has a top 5 attendance
+                              value but not a top 5 revenue value it will be blue.</text><br>
+                        <svg width="15" height="15">
+                            <rect width="15" height="15" x="0" y="0" fill="#484D4D"></rect>
+                        </svg>
+                        <text>Performed in State. If the artist performed in a state it will be dark grey</text></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="pieExplain" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">State Pie Chart Explanation</h4>
+                </div>
+                <div class="modal-body">
+                    <p><strong>This information corresponds to the artist chosen in the selector on the left of the page.</strong> If you click on a state in the map, one of two things will happen:</p>
+                    <br>
+                    <ol>
+                        <li>You are alerted with the message "There were no concerts in this state :("</li>
+                        <li>A pie chart appears below the map</li>
+                    </ol>
+                    <br>
+                    <p>The first option occurs if the artist did not perform in the state you clicked on.</p>
+                    <p>The second option shows the amount of revenue that the artist made at each venue in the state. You can hover over the slices to see the venue, revenue, and % revenue.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" id="close-modal2">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="barExplain" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Artist Bar Chart Explanation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>The <strong>top two bar graphs</strong> correspond to the <strong>artist selected on the left of the page.</strong></p>
+                    <br>
+                    <p>The <strong>bottom two bar graphs</strong> correspond to the <strong>artist selected in the other selector.</strong></p>
+                    <br>
+                    <p>Play around with the selectors to see how artists compare to one another.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" id="close-modal3">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <br>
 <br>
@@ -38,62 +152,70 @@
 
 <div id="chart-area" class="chart-div">
     <h3>Location of Performances with Total Attendance and Revenue by State</h3>
-    <svg width="15" height="15">
-        <rect width="15" height="15" x="0" y="0" fill="purple"></rect>
-    </svg>
-    <text>Top 5 Performance Overall</text>
-    <svg width="15" height="15">
-        <rect width="15" height="15" x="0" y="0" fill="red"></rect>
-    </svg>
-    <text>Top 5 Performance in terms of Revenue</text>
-    <svg width="15" height="15">
-        <rect width="15" height="15" x="0" y="0" fill="blue"></rect>
-    </svg>
-    <text>Top 5 Performance in terms of Attendance</text>
     <div id="text-area">
 
     </div>
 </div>
-
-<div id="arrow-div">
-    <a href="#barchart-area"><button><i class="fas fa-arrow-down"></i></button></a>
+<div id="arrow-div-pie">
+    <a href="#pie-area"><button><i class="fas fa-arrow-down"></i>Pie Chart</button></a>
+</div>
+<div id="arrow-div-bar">
+    <a href="#barchart-area"><button><i class="fas fa-arrow-down"></i>Bar Charts</button></a>
+</div>
+<div id="pie-area" class="chart-div">
+    <h3>Amount and Percent of Revenue by Venue for a Given State</h3>
+    <p>Hover over slices to display the Venue, Revenue, and percent of Revenue made at that venue</p>
+    <p id="state-abbr"></p>
 </div>
 
-<div id="barchart-area" class="chart-div">
+<div id="barchart-area" class="chart-div2">
     <h3>Revenue and Attendance Per Performance</h3>
-    <div id="sort-div">
-        <select id="sort-select">
-            <option id="default">Default</option>
-            <option id="attendance">Attendance</option>
-            <option id="revenue">Revenue</option>
-        </select>
-    </div>
-    <br>
     <div>
         <svg width="15" height="15">
-            <rect width="15" height="15" x="0" y="0" fill="lightgray"></rect>
+            <rect width="15" height="15" x="0" y="0" fill="lightgreen"></rect>
         </svg>
         <text>Revenue</text>
         <svg width="15" height="15">
-            <rect width="15" height="15" x="0" y="0" fill="darkgray"></rect>
+            <rect width="15" height="15" x="0" y="0" fill="lightblue"></rect>
         </svg>
         <text>Attendance</text>
     </div>
 </div>
 
-<!--<div id="rev-barchart-area" class="chart-div">-->
-<!--    <h3>Revenue Across All Performances</h3>-->
-
-<!--</div>-->
-
-<!--<div id="att-barchart-area" class="chart-div">-->
-<!--    <h3>Attendance Across All Performances</h3>-->
-
-<!--</div>-->
+<div id="barchart-area2" class="chart-div2">
+    <div id="compare-div">
+        <select id="compare-select">
+            <option id="weeknd1">The Weeknd</option>
+            <option id="beyonce1">Beyonce</option>
+            <option id="lamar1">Kendrick Lamar</option>
+            <option id="bieber1">Justin Bieber</option>
+            <option id="drake1">Drake</option>
+            <option id="mendes1">Shawn Mendes</option>
+            <option id="grande1">Ariana Grande</option>
+            <option id="pitbull1">Pitbull</option>
+            <option id="mars1">Bruno Mars</option>
+            <option id="jayz1">Jay-Z</option>
+            <option id="maluma1">Maluma</option>
+        </select>
+    </div>
+    <div>
+        <svg width="15" height="15">
+            <rect width="15" height="15" x="0" y="0" fill="darkgreen"></rect>
+        </svg>
+        <text>Revenue</text>
+        <svg width="15" height="15">
+            <rect width="15" height="15" x="0" y="0" fill="darkblue"></rect>
+        </svg>
+        <text>Attendance</text>
+    </div>
+</div>
 
 <script src="js/topojson.js"></script>
 <script src="js/topojson.v1.min.js"></script>
 <script src="js/queue.v1.min.js"></script>
-<script type="application/javascript" src="js/main.js"></script>
+<script type="application/javascript" src="js/main2.js"></script>
+<script type="application/javascript" src="js/map.js"></script>
+<script type="application/javascript" src="js/bar.js"></script>
+<script type="application/javascript" src="js/bar2.js"></script>
 </body>
 </html>

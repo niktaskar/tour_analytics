@@ -12,6 +12,7 @@
 <div class="navbar bg-light navbar-expand-lg container-fluid sticky-top">
     <a class="navbar navbar-brand" href="index.html">Music Tour Analytics</a>
     <a class="navbar navbar-item" href="processBook.html">Process Book</a>
+    <a class="navbar navbar-item" href="https://youtu.be/NnHrs88nJg8" target="_blank">Screencast <i class="fas fa-external-link-alt"></i></a>
     <a class="navbar navbar-item" href="https://github.com/niktaskar/tour_analytics" target="_blank">Github Page <i class="fas fa-external-link-alt"></i></a>
 </div>
 <ol>
@@ -65,6 +66,12 @@
         <li>The Weeknd: Starboy: Legend of the Fall Tour - <a href="https://en.wikipedia.org/wiki/Starboy:_Legend_of_the_Fall_Tour">https://en.wikipedia.org/wiki/Starboy:_Legend_of_the_Fall_Tour</a></li>
         <li>Drake: Summer Sixteen Tour - <a href="https://en.wikipedia.org/wiki/Summer_Sixteen_Tour">https://en.wikipedia.org/wiki/Summer_Sixteen_Tour</a></li>
         <li>Justin Bieber: Purpose World Tour - <a href="https://en.wikipedia.org/wiki/Purpose_World_Tour">https://en.wikipedia.org/wiki/Purpose_World_Tour</a></li>
+          <li>Ariana Grande: Dangerous Woman Tour - <a href="https://en.wikipedia.org/wiki/Dangerous_Woman_Tour">https://en.wikipedia.org/wiki/Dangerous_Woman_Tour</a></li>
+          <li>Bruno Mars: 24K Magic World Tour - <a href="https://en.wikipedia.org/wiki/24K_Magic_World_Tour">https://en.wikipedia.org/wiki/24K_Magic_World_Tour</a></li>
+          <li>Jay-Z: On the Run II Tour - <a href="https://en.wikipedia.org/wiki/On_the_Run_II_Tour">https://en.wikipedia.org/wiki/On_the_Run_II_Tour</a></li>
+          <li>Shawn Mendes: Illuminate World Tour - <a href="https://en.wikipedia.org/wiki/Illuminate_World_Tour">https://en.wikipedia.org/wiki/Illuminate_World_Tour</a></li>
+          <li>Pitbull: Live Tour - <a href="https://en.wikipedia.org/wiki/Enrique_Iglesias_and_Pitbull_Live">https://en.wikipedia.org/wiki/Enrique_Iglesias_and_Pitbull_Live</a></li>
+          <li>Maluma: F.A.M.E Tour - <a href="https://en.wikipedia.org/wiki/F.A.M.E._Tour_(Maluma)">https://en.wikipedia.org/wiki/F.A.M.E._Tour_(Maluma)</a></li>
       </ul>
     <li>This data was gathered and cleaned using a webcrawler created in Python. We isolated the data from the charts that were on each Wikipedia page that displayed
         data about each stop on the tour, and put that data into separate JSON files for each tour. We got data about each tour stop in these categories:
@@ -116,6 +123,19 @@
             We also added a navigation bar at the top the page so that the user can access our process book, and see our github page. Lastly,
             we added an artist description for each artist when you choose them in the selector, so that the user can have some more context
             about the tours they are looking at the data for. These changes will be shown below in the implementation section.</li>
+        <li>We had three outside participants complete the tasks outlined in our usability study. From the three participants, we received a lot of insightful advice. Some of our participant thought that the colors in the bar charts were a bit difficult to distinguish and also felt as thought the added use of color to emphasize certain details would be useful. Most people felt as though the web page and visualizations were intuitive and were easily able to navigate the page to complete the tasks we asked of them.</li>
+        --------------------------------------------------------------
+        <li>After doing our presentation we got some more good feedback. The first thing we did was make sure there was more contrast on
+            the US map between states that had concerts in them and states that did not. We also put the explanation for the color coding
+            of the map into a box that can be toggled, so we can add more detailed explanations without taking up too much space.</li>
+        <li>We also decided to add some more features, so that the site is more appealing to the user. The first thing we added was an on-click
+            function for each state on the map for each artist, which displays a pie chart that shows the percentage of the total state's revenue
+            based on the different venues in that state. This helps to show what venues bring in more money for artists in each state.</li>
+        <li>We also added a function to compare artist bar charts to each other. Underneath the main selected artist's bar chart, there is another
+            selection box, and if you choose an artist from that you can see their bar chart right underneath the main artist bar chart. This is an
+            important feature when it comes to comparing who performs better in which cities.</li>
+        <li>Lastly, we added modal pop-up boxes to display information about our visualizations, so that we can put more explanation without taking
+            up too much space on the main page.</li>
     </ul>
   </ul>
   <h2><li>
@@ -155,14 +175,36 @@
           <br>
           <img style="width: 50%" src="images/combined.png"/></li>
       </li><br>
-      <li>The double bar chart with only attendance displayed and sorted (also info on hover):
+      <li>The double bar chart sorted by attendance (also info on hover):
           <br>
           <img style="width: 50%" src="images/attendance.png"/></li>
       </li><br>
-      <li>The double bar chart with only revenue displayed and sorted (also info on hover):
+      <li>The double bar chart sorted by revenue (also info on hover):
           <br>
           <img style="width: 50%" src="images/revenue.png"/></li>
       </li><br>
+      ---------------------------------------------------------------------------------------------------------------
+      <li>This image shows the map explanation modal pop up, the others are very similar in style and structure:
+          <br>
+          <img style="width: 50%" src="images/modal.png"/></li>
+      </li><br>
+      <li>This image shows the newly updated map, with better contrast and colors:
+          <br>
+          <img style="width: 50%" src="images/newMap.png"/></li>
+      </li><br>
+      <li>This image shows the pie charts with the revenue information that shows up on click of a state:
+          <br>
+          <img style="width: 50%" src="images/pieChart.png"/></li>
+      </li><br>
+      <li>This image shows the main artist bar chart, with updated colors and sizing:
+          <br>
+          <img style="width: 50%" src="images/bar1.png"/></li>
+      </li><br>
+      <li>This image shows the selected compared artist bar chart, with updated colors and sizing:
+          <br>
+          <img style="width: 50%" src="images/bar2.png"/></li>
+      </li><br>
+
   </ul>
   <h2><li>
     Evaluation:
@@ -173,7 +215,18 @@
         version of the project, to truly find the answers we set out to find in this project.</li>
     <li>Our visualization works pretty well. There are some bugs we still have to fix, and some styling to fix, but the general
         functionality is exactly how we wanted it to be at this stage. Overall we are satisfied with our work so far.</li>
+     ------------------------------------------------------------------------------------------------------------------------------
+      <li>As we prepare to finish up our project, we are generally very satisfied with what we have done. A lot of our work came from
+          data collection and data cleaning, and we did a great job getting data that was very hard to access and making it manageable
+          for our visualization. The data we gathered and the visualizations we created have been informative and told us exactly what we
+          set out to find out, that is information about artists tour performance numbers.</li>
+      <li>A lot of what we found out seemed pretty obvious, but if we are able to add smaller and more various artists, our visualization
+          can be very eye opening. We definitely plan to do this, as this is something that is interesting to us both beyond a school assignment.</li>
   </ul>
+    <h2><li>
+        Screencast:
+    </li></h2>
+    <iframe width="720" height="480" id="youtube-vid" src="https://www.youtube.com/embed/NnHrs88nJg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </ol>
 </body>
 </html>

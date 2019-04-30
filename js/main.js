@@ -14,11 +14,15 @@ var descriptions = ["Abel Makkonen Tesfaye (born 16 February 1990), better known
                     "Shawn Corey Carter (born December 4, 1969), known professionally as Jay-Z is an American rapper, songwriter, record producer, entrepreneur, and record executive. He is regarded as one of the world's most significant rappers and cultural icons and has been a global figure in popular culture for over two decades.",
                     "Juan Luis Londoño Arias (born 28 January 1994), known professionally as Maluma, is a Colombian singer and songwriter, signed to Sony Music Colombia and Sony Latin. He has won a Latin Grammy Award and two Latin American Music Awards. His musical genres include reggaeton, latin trap, and latin pop."];
 var tours = ["Starboy:_Legend_of_the_Fall_Tour", "The_Formation_World_Tour", "The_Damn_Tour", "Purpose_World_Tour", "Summer_Sixteen_Tour", "Illuminate_World_Tour", "Dangerous_Woman_Tour", "Enrique_Iglesias_and_Pitbull_Live", "24K_Magic_World_Tour", "On_the_Run_II_Tour", "F.A.M.E._Tour_(Maluma)"];
+var titles = ["Starboy: Legend of the Fall Tour", "The Formation World Tour", "The Damn Tour", "Purpose World Tour", "Summer Sixteen Tour", "Illuminate World Tour", "Dangerous Woman Tour", "Pitbull Live", "24K Magic World Tour", "On the Run II Tour", "F.A.M.E. Tour"];
 var defaultTour = tours[0];
 var defaultData = [];
 
 
-document.getElementById("description").innerHTML = "<p><img src='images/weeknd.jpg'/><br>" + descriptions[0] + "<br><iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/34Na4j8AVgA\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></p>";
+document.getElementById("description").innerHTML = "<p>" + titles[0] + "<img src='images/weeknd.jpg'/><br>" + descriptions[0] + "<br><iframe width=\"250\" height=\"250\" src=\"https://www.youtube.com/embed/34Na4j8AVgA\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe></p>";
+
+var pieArea = d3.select("#pie-area").append("svg")
+    .attr("id", "pie-svg");
 
 var barChartArea = d3.select("#barchart-area").append("svg")
     .attr("id", "bar-svg")
@@ -57,7 +61,7 @@ function loadData(tour) {
 
 function createVisualization(error, tourData, mapData) {
     svg.selectAll("path").remove();
-
+    document.getElementById("pie-area").innerHTML = "Hover over slice to see venue name and revenue";
     console.log(tourData);
 
     console.log(mapData);
@@ -149,7 +153,10 @@ function createVisualization(error, tourData, mapData) {
                 // STATES WHERE THEY HAD THEIR HIGHEST ATTENDANCES
                 else if (tourData.Concerts[i].Abbr === d.properties.STATE_ABBR && (topAttendances.indexOf(tourData.Concerts[i]) !== -1)){
                     return "blue";
+                } else if (tourData.Concerts[i].Abbr === d.properties.STATE_ABBR){
+                    return "#484D4D";
                 }
+
                 i++;
             }
             return "lightgray";
@@ -190,10 +197,84 @@ function createVisualization(error, tourData, mapData) {
 
             tip.show();
         })
+        .on("click", function(d){
+            renderPie(d, tourData);
+        })
         .on("mouseout", function(d){
             textArea.selectAll("text").remove();
             d3.select(".tooltip").remove();
         });
+}
+
+function renderPie(mapData, concertData){
+    var concerts = [];
+    document.getElementById("pie-area").innerHTML = " ";
+
+    var width = 450;
+    var height = 450;
+    var margin = 40;
+    var radius = Math.min(width, height) / 2 - margin;
+
+    var svg = d3.select("#pie-area")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    for(var j = 0; j < concertData.Concerts.length; j++){
+        if(concertData.Concerts[j].Abbr === mapData.properties.STATE_ABBR) {
+            concerts.push({
+                key: concertData.Concerts[j].Venue,
+                value: concertData.Concerts[j].Revenue
+            });
+        }
+    }
+
+    if(concerts[0] == null){
+        document.getElementById("pie-area").innerHTML = "No concerts in this state";
+    }
+
+    var color = d3.scaleOrdinal()
+        .domain(concerts)
+        .range(["#1B18C7", "#48C718", "#9A18C7", "#DF1830", "#0DF2F2", "#F20DE4", "#1A7B17"])
+
+    var arcGenerator = d3.arc()
+        .innerRadius(0)
+        .outerRadius(radius)
+
+    var pie = d3.pie()
+        .value(function(d) {return d.value.value; });
+    var data_ready = pie(d3.entries(concerts));
+
+    svg
+        .selectAll('g')
+        .data(data_ready)
+        .enter()
+        .append('path')
+        .attr('d', d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius)
+        )
+        .attr('fill', function(d){ return(color(d.data.value.key)) })
+        .attr("stroke", "black")
+        .on("mouseover", function(d) {
+            var tip = d3.tip()
+                .attr("class", "tooltip")
+                .direction("e")
+                .html(function(){
+                    return "<p><h4>Venue: " + d.data.value.key + "<br> Revenue: $" + d.data.value.value + "</p>"
+                });
+
+            svg.call(tip);
+
+            tip.show();
+        })
+        .on("mouseout", function(d){
+            d3.select(".tooltip").remove();
+        })
+        .style("stroke-width", "0.5px")
+        .style("opacity", 0.5);
 }
 
 function renderBarChart(data){
@@ -405,7 +486,7 @@ function handleChange(){
 
     var tour = tours[index];
 
-    document.getElementById("description").innerHTML = "<p><img src='images/" + artist + ".jpg'/><br>" + descriptions[index] + "<br>" + youtube + "</p>";
+    document.getElementById("description").innerHTML = "<p>" + titles[index] + "<img src='images/" + artist + ".jpg'/><br>" + descriptions[index] + "<br>" + youtube + "</p>";
 
     loadData(tour);
 
